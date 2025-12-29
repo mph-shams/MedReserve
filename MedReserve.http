@@ -1,0 +1,6 @@
+@MedReserve_HostAddress = http://localhost:5036
+
+GET {{MedReserve_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

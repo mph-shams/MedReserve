@@ -27,7 +27,7 @@ public class IdentityService : IIdentityService
         var userRepo = _uow.Repository<User>();
         var existingUser = (await userRepo.GetAllAsync()).FirstOrDefault(u => u.Username == request.Username);
 
-        if (existingUser != null) return Result<AuthResponse>.Failure("نام کاربری تکراری است.");
+        if (existingUser != null) return Result<AuthResponse>.Failure("A user with this username already exists");
 
         var user = new User
         {
@@ -49,7 +49,7 @@ public class IdentityService : IIdentityService
             .FirstOrDefault(u => u.Username == request.Username);
 
         if (user == null || !BCrypt.Net.BCrypt.Verify(request.Password, user.PasswordHash))
-            return Result<AuthResponse>.Failure("نام کاربری یا رمز عبور اشتباه است.");
+            return Result<AuthResponse>.Failure("The username is incorrect");
 
         var token = GenerateJwtToken(user);
         var refreshToken = Guid.NewGuid();

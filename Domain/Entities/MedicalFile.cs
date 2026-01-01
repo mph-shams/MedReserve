@@ -9,4 +9,6 @@ public class MedicalFile : BaseEntity
     public byte[] FileContent { get; set; } = [];
     public string ContentType { get; set; } = string.Empty;
     public ulong Size { get; set; }
+
+    public ICollection<MedicalFile> MedicalFiles { get; set; } = new List<MedicalFile>();
 }

@@ -49,7 +49,7 @@ public class IdentityService : IIdentityService
             .FirstOrDefault(u => u.Username == request.Username);
 
         if (user == null || !BCrypt.Net.BCrypt.Verify(request.Password, user.PasswordHash))
-            return Result<AuthResponse>.Failure("The username is incorrect");
+            return Result<AuthResponse>.Failure("The username or password is incorrect");
 
         var token = GenerateJwtToken(user);
         var refreshToken = Guid.NewGuid();

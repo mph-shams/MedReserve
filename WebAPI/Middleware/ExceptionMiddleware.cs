@@ -1,46 +1,36 @@
-﻿using Application.Common.Models;
+﻿using FluentValidation;
+using Application.Common.Models;
 using System.Net;
 using System.Text.Json;
 
 namespace WebAPI.Middleware;
 
-public class ExceptionMiddleware
+public class ExceptionMiddleware(RequestDelegate next, ILogger<ExceptionMiddleware> logger)
 {
-    private readonly RequestDelegate _next;
-    private readonly ILogger<ExceptionMiddleware> _logger;
-
-    public ExceptionMiddleware(RequestDelegate next, ILogger<ExceptionMiddleware> logger)
-    {
-        _next = next;
-        _logger = logger;
-    }
-
     public async Task InvokeAsync(HttpContext context)
     {
-        try
-        {
-            await _next(context);
-        }
-        catch (Exception ex)
-        {
-            _logger.LogError(ex, ex.Message);
-            await HandleExceptionAsync(context, ex);
-        }
+        try { await next(context); }
+        catch (Exception ex) { await HandleExceptionAsync(context, ex); }
     }
 
-    private static Task HandleExceptionAsync(HttpContext context, Exception exception)
+    private async Task HandleExceptionAsync(HttpContext context, Exception exception)
     {
         context.Response.ContentType = "application/json";
-        context.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
+        var response = new ErrorResponse { StatusCode = (int)HttpStatusCode.InternalServerError };
 
-        var response = new ErrorResponse
+        if (exception is ValidationException validationEx)
         {
-            StatusCode = context.Response.StatusCode,
-            Message = "An internal server error has occurred!",
-            Details = exception.Message
-        };
-
-        var json = JsonSerializer.Serialize(response);
-        return context.Response.WriteAsync(json);
+            context.Response.StatusCode = (int)HttpStatusCode.BadRequest;
+            response.StatusCode = 400;
+            response.Message = "Input validation error!";
+            response.Details = string.Join(" | ", validationEx.Errors.Select(e => e.ErrorMessage));
+        }
+        else
+        {
+            logger.LogError(exception, exception.Message);
+            context.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
+            response.Message = "Internal Server Error";
+        }
+        await context.Response.WriteAsync(JsonSerializer.Serialize(response));
     }
 }

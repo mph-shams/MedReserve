@@ -79,7 +79,6 @@ namespace MedReserve.Migrations
                     DoctorId = table.Column<int>(type: "int", nullable: false),
                     AppointmentDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Status = table.Column<int>(type: "int", nullable: false),
-                    DoctorId1 = table.Column<int>(type: "int", nullable: false),
                     CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
@@ -91,12 +90,6 @@ namespace MedReserve.Migrations
                         principalTable: "Doctors",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_Appointments_Doctors_DoctorId1",
-                        column: x => x.DoctorId1,
-                        principalTable: "Doctors",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -157,11 +150,6 @@ namespace MedReserve.Migrations
                 name: "IX_Appointments_DoctorId",
                 table: "Appointments",
                 column: "DoctorId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Appointments_DoctorId1",
-                table: "Appointments",
-                column: "DoctorId1");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Doctors_UserId",

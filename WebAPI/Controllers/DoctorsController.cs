@@ -1,4 +1,5 @@
-﻿using MediatR;
+﻿using Application.Features.Doctors.Commands.CreateDoctorInfo;
+using MediatR;
 using MedReserve.Application.Features.Doctors.Queries;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -11,6 +12,14 @@ namespace MedReserve.WebAPI.Controllers
     {
         private readonly IMediator _mediator;
         public DoctorsController(IMediator mediator) => _mediator = mediator;
+
+        [Authorize(Roles = "Doctor")]
+        [HttpPost("profile")]
+        public async Task<IActionResult> UpsertProfile(CreateDoctorInfoCommand command)
+        {
+            var result = await _mediator.Send(command);
+            return result.IsSuccess ? Ok(result) : BadRequest(result);
+        }
 
         [HttpGet("search")]
         public async Task<IActionResult> Search([FromQuery] string specialty)

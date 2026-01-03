@@ -18,7 +18,7 @@ public class MedicalFilesController : ControllerBase
     public async Task<IActionResult> GetByAppointment(int appointmentId)
     {
         var result = await _mediator.Send(new GetMedicalFilesByAppointmentQuery(appointmentId));
-        return result.IsSuccess ? Ok(result) : BadRequest(result);
+        return Ok("List of all files attached to this appointment!");
     }
 
     [HttpPost("upload")]
@@ -40,10 +40,5 @@ public class MedicalFilesController : ControllerBase
         return Ok("File deleted successfully!");
     }
 
-    [HttpGet("appointment/{appointmentId}")]
-    public async Task<IActionResult> GetByAppointment(int appointmentId)
-    {
-        // var result = await _mediator.Send(new GetMedicalFilesByAppointmentQuery(appointmentId));
-        return Ok("List of all files attached to this appointment!");
-    }
+   
 }

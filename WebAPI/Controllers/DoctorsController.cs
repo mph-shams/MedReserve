@@ -28,14 +28,6 @@ namespace MedReserve.WebAPI.Controllers
             return result.IsSuccess ? Ok(result) : BadRequest(result);
         }
 
-        [Authorize(Roles = "Doctor")]
-        [HttpPost("profile")]
-        public async Task<IActionResult> UpsertProfile(CreateDoctorInfoCommand command)
-        {
-            var result = await _mediator.Send(command);
-            return result.IsSuccess ? Ok(result) : BadRequest(result);
-        }
-
         [HttpGet("{id}")]
         public async Task<IActionResult> GetDetails(int id)
         {

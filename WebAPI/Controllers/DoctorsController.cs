@@ -31,15 +31,15 @@ namespace MedReserve.WebAPI.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> GetDetails(int id)
         {
-            // var result = await _mediator.Send(new GetDoctorDetailsQuery(id));
-            return Ok("Full Physician Profile and Availability");
+            var result = await _mediator.Send(new GetDoctorDetailsQuery(id));
+            return result.IsSuccess ? Ok(result) : BadRequest(result);
         }
 
         [HttpGet("all")]
         public async Task<IActionResult> GetAll()
         {
-            // var result = await _mediator.Send(new GetAllDoctorsQuery());
-            return Ok("All System Physicians");
+            var result = await _mediator.Send(new GetAllDoctorsQuery());
+            return result.IsSuccess ? Ok(result) : BadRequest(result);
         }
     }
 }

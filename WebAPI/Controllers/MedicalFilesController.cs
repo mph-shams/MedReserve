@@ -1,6 +1,4 @@
-﻿using Application.Common.Models;
-using Application.Features.MedicalFiles.Commands;
-using Application.Features.MedicalFiles.Queries.GetMedicalFilesByAppointment;
+﻿using Application.Features.MedicalFiles.Queries.GetMedicalFilesByAppointment;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;

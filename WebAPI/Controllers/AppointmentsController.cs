@@ -1,5 +1,6 @@
-﻿using MediatR;
-using MedReserve.Application.Features.Appointments.Commands.CreateAppointment;
+﻿using MedReserve.Application.Features.Appointments.Commands.CreateAppointment;
+using Application.Features.Appointments.Commands.CancelAppointment;
+using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -16,6 +17,9 @@ namespace MedReserve.WebAPI.Controllers
         [HttpPost]
         public async Task<IActionResult> Create(CreateAppointmentCommand command)
         {
+            var userIdStr = User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier)?.Value;
+            if (string.IsNullOrEmpty(userIdStr)) return Unauthorized();
+
             var result = await _mediator.Send(command);
             return result.IsSuccess ? Ok(result) : BadRequest(result);
         }
@@ -31,7 +35,7 @@ namespace MedReserve.WebAPI.Controllers
         [HttpPatch("{id}/cancel")]
         public async Task<IActionResult> Cancel(int id)
         {
-            // var result = await _mediator.Send(new CancelAppointmentCommand(id));
+            var result = await _mediator.Send(new CancelAppointmentCommand(id));
             return Ok("The appointment has been successfully cancelled !");
         }
 

@@ -1,5 +1,4 @@
-﻿using Application.Common.Models;
-using Application.Features.MedicalFiles.Commands;
+﻿using Application.Features.MedicalFiles.Queries.GetMedicalFilesByAppointment;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -12,6 +11,13 @@ public class MedicalFilesController : ControllerBase
 {
     private readonly IMediator _mediator;
     public MedicalFilesController(IMediator mediator) => _mediator = mediator;
+
+    [HttpGet("appointment/{appointmentId}")]
+    public async Task<IActionResult> GetByAppointment(int appointmentId)
+    {
+        var result = await _mediator.Send(new GetMedicalFilesByAppointmentQuery(appointmentId));
+        return Ok("List of all files attached to this appointment!");
+    }
 
     [HttpPost("upload")]
     public async Task<IActionResult> Upload([FromForm] int appointmentId, IFormFile file)
@@ -32,10 +38,5 @@ public class MedicalFilesController : ControllerBase
         return Ok("File deleted successfully!");
     }
 
-    [HttpGet("appointment/{appointmentId}")]
-    public async Task<IActionResult> GetByAppointment(int appointmentId)
-    {
-        // var result = await _mediator.Send(new GetMedicalFilesByAppointmentQuery(appointmentId));
-        return Ok("List of all files attached to this appointment!");
-    }
+   
 }

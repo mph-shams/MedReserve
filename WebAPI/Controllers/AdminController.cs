@@ -1,5 +1,10 @@
-﻿using MediatR;
+﻿using Domain.Enums;
+using MediatR;
+using MedReserve.Application.Features.Admin.Commands.UpdateUserRole;
+using MedReserve.Application.Features.Admin.Commands.VerifyDoctor;
 using MedReserve.Application.Features.Admin.Queries;
+using MedReserve.Application.Features.Admin.Queries.GetAllUsers;
+using MedReserve.Application.Features.Admin.Queries.GetSystemReports;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -24,6 +29,13 @@ namespace MedReserve.WebAPI.Controllers
             return result.IsSuccess ? Ok(result) : BadRequest(result);
         }
 
+        [HttpPatch("users/{userId}/role")]
+        public async Task<IActionResult> UpdateRole(int userId, [FromBody] UserRole role)
+        {
+            var result = await _mediator.Send(new UpdateUserRoleCommand(userId, role));
+            return result.IsSuccess ? Ok(result) : BadRequest(result);
+        }
+
         [HttpPost("verify-doctor/{id}")]
         public async Task<IActionResult> VerifyDoctor(int id)
         {
@@ -31,3 +43,4 @@ namespace MedReserve.WebAPI.Controllers
             return result.IsSuccess ? Ok(result) : BadRequest(result);
         }
     }
+}

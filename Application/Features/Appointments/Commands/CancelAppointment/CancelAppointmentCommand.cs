@@ -16,7 +16,7 @@ public class CancelAppointmentHandler : IRequestHandler<CancelAppointmentCommand
     public async Task<Result<bool>> Handle(CancelAppointmentCommand request, CancellationToken ct)
     {
         var appointment = await _unitOfWork.Repository<Appointment>().GetByIdAsync(request.Id);
-        if (appointment == null) return Result<bool>.Failure("نوبت یافت نشد.");
+        if (appointment == null) return Result<bool>.Failure("Appointment not found.");
 
         appointment.Status = AppointmentStatus.Cancelled; 
         _unitOfWork.Repository<Appointment>().Update(appointment);

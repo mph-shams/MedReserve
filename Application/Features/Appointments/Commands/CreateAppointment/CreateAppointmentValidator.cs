@@ -1,7 +1,6 @@
-﻿using Application.Appointments.Commands.CreateAppointment;
-using FluentValidation;
+﻿using FluentValidation;
 
-namespace MedReserve.Application.Appointments.Commands.CreateAppointment
+namespace MedReserve.Application.Features.Appointments.Commands.CreateAppointment
 {
     public class CreateAppointmentValidator : AbstractValidator<CreateAppointmentCommand>
     {

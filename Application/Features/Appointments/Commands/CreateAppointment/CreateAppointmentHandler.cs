@@ -1,9 +1,9 @@
-﻿using Application.Appointments.Commands.CreateAppointment;
-using Application.Common.Interfaces;
+﻿using Application.Common.Interfaces;
 using Application.Common.Models;
 using Domain.Entities;
 using Domain.Enums;
 using MediatR;
+using MedReserve.Application.Features.Appointments.Commands.CreateAppointment;
 
 public class CreateAppointmentHandler : IRequestHandler<CreateAppointmentCommand, Result<int>>
 {

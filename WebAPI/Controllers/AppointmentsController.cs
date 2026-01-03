@@ -1,8 +1,10 @@
-﻿using MedReserve.Application.Features.Appointments.Commands.CreateAppointment;
-using Application.Features.Appointments.Commands.CancelAppointment;
+﻿using Application.Features.Appointments.Commands.CancelAppointment;
+using Application.Features.Appointments.Queries.GetPatientAppointments;
 using MediatR;
+using MedReserve.Application.Features.Appointments.Commands.CreateAppointment;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
 
 namespace MedReserve.WebAPI.Controllers
 {
@@ -27,11 +29,12 @@ namespace MedReserve.WebAPI.Controllers
         [HttpGet("my-appointments")]
         public async Task<IActionResult> GetMyList()
         {
-            // var result = await _mediator.Send(new GetPatientAppointmentsQuery());
-            return Ok("Patient's Appointment List");
+            var userId = int.Parse(User.FindFirstValue(System.Security.Claims.ClaimTypes.NameIdentifier)!);
+            var result = await _mediator.Send(new GetPatientAppointmentsQuery(userId));
+            return result.IsSuccess ? Ok(result) : BadRequest(result);
         }
 
-        
+
         [HttpPatch("{id}/cancel")]
         public async Task<IActionResult> Cancel(int id)
         {

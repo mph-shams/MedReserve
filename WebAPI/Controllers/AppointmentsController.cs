@@ -1,5 +1,5 @@
-﻿using Application.Appointments.Commands.CreateAppointment;
-using MediatR;
+﻿using MediatR;
+using MedReserve.Application.Features.Appointments.Commands.CreateAppointment;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 

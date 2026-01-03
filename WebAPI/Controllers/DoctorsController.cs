@@ -32,14 +32,14 @@ namespace MedReserve.WebAPI.Controllers
         public async Task<IActionResult> GetDetails(int id)
         {
             // var result = await _mediator.Send(new GetDoctorDetailsQuery(id));
-            return Ok("اطلاعات کامل پزشک و ساعات حضور");
+            return Ok("Full Physician Profile and Availability");
         }
 
         [HttpGet("all")]
         public async Task<IActionResult> GetAll()
         {
             // var result = await _mediator.Send(new GetAllDoctorsQuery());
-            return Ok("لیست کل پزشکان سامانه");
+            return Ok("All System Physicians");
         }
     }
 }

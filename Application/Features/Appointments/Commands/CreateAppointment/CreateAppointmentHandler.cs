@@ -14,6 +14,14 @@ namespace Application.Features.Appointments.Commands.CreateAppointment{
 
         public async Task<Result<int>> Handle(CreateAppointmentCommand request, CancellationToken ct)
         {
+            var hasConflict = (await _unitOfWork.Repository<Appointment>().GetAllAsync())
+        .Any(a => a.DoctorId == request.DoctorId &&
+                  a.AppointmentDate == request.AppointmentDate &&
+                  a.Status != AppointmentStatus.Cancelled);
+
+            if (hasConflict)
+                return Result<int>.Failure("This time is already booked!");
+
             var appointment = new Appointment
             {
                 DoctorId = request.DoctorId,

@@ -1,10 +1,6 @@
 ﻿using Domain.Enums;
 using MediatR;
-using MedReserve.Application.Features.Admin.Commands.UpdateUserRole;
-using MedReserve.Application.Features.Admin.Commands.VerifyDoctor;
 using MedReserve.Application.Features.Admin.Queries;
-using MedReserve.Application.Features.Admin.Queries.GetAllUsers;
-using MedReserve.Application.Features.Admin.Queries.GetSystemReports;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 

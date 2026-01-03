@@ -6,7 +6,6 @@ using MediatR;
 
 namespace MedReserve.Application.Features.Doctors.Commands
 {
-    // Application/Features/Doctors/Commands/CreateDoctorInfo/CreateDoctorInfoCommand.cs
     public record CreateDoctorInfoCommand(
         int UserId,
         string Specialty,
@@ -20,10 +19,9 @@ namespace MedReserve.Application.Features.Doctors.Commands
 
         public async Task<Result<int>> Handle(CreateDoctorInfoCommand request, CancellationToken ct)
         {
-            // بررسی اینکه آیا این کاربر وجود دارد و نقش او پزشک است یا خیر
             var user = await _unitOfWork.Repository<User>().GetByIdAsync(request.UserId);
             if (user == null || user.Role != UserRole.Doctor)
-                return Result<int>.Failure("کاربر مورد نظر یافت نشد یا دسترسی پزشک ندارد.");
+                return Result<int>.Failure("User not found or does not have doctor access");
 
             var doctor = new Doctor
             {
@@ -36,7 +34,7 @@ namespace MedReserve.Application.Features.Doctors.Commands
             await _unitOfWork.Repository<Doctor>().AddAsync(doctor);
             await _unitOfWork.SaveChangesAsync(ct);
 
-            return Result<int>.Success(doctor.Id); // این همان آیدی است که باید در نوبت‌دهی استفاده شود
+            return Result<int>.Success(doctor.Id); 
         }
     }
 }

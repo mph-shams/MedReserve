@@ -3,7 +3,8 @@
 MedReserve is a comprehensive clinic management and online booking system built with .NET 8 and ASP.NET Core Web API. The project is designed with a focus on Clean Architecture principles and modern design patterns to ensure scalability, maintainability, and high testability
 
 **🔶Architecture & Design**
-This project follows Clean Architecture, decoupling the core business logic from external concerns:
+
+**This project follows Clean Architecture, decoupling the core business logic from external concerns:**
 
 Domain: Contains enterprise logic, including Entities, Enums, and common types
 

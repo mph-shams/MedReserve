@@ -1,8 +1,7 @@
-﻿namespace MedReserve.Application.DTOs.Auth
+﻿namespace MedReserve.Application.DTOs.Auth;
+public class ChangePasswordRequest
 {
-    public record ChangePasswordRequest(
-        string CurrentPassword,
-        string NewPassword,
-        string ConfirmNewPassword
-    );
+    public string CurrentPassword { get; set; } = string.Empty;
+    public string NewPassword { get; set; } = string.Empty;
+    public string ConfirmNewPassword { get; set; } = string.Empty;
 }

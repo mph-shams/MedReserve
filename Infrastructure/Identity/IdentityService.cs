@@ -34,7 +34,8 @@ public class IdentityService : IIdentityService
             Username = request.Username,
             PasswordHash = BCrypt.Net.BCrypt.HashPassword(request.Password),
             Role = (UserRole)request.RoleId,
-            IsVerified = true
+            IsVerified = true,
+            TelegramChatId = request.TelegramChatId
         };
 
         await userRepo.AddAsync(user);

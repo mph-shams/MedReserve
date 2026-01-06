@@ -2,6 +2,6 @@
 
 public class UpdateAppointmentStatusRequest
 {
-    public int status { get; set; }
+    public int Status { get; set; }
 
 }

@@ -1,4 +1,4 @@
-﻿using Application.Features.MedicalFiles.Queries.GetMedicalFilesByAppointment;
+﻿using MedReserve.Application.DTOs.MedicalFiles;
 
 namespace MedReserve.Application.DTOs.Appointments
 {

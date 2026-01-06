@@ -1,11 +1,11 @@
 ﻿using Application.Common.Interfaces;
 using Application.Common.Models;
 using Domain.Entities;
+using MedReserve.Application.DTOs.Doctors;
 using MediatR;
 
 namespace MedReserve.Application.Features.Doctors.Queries
 {
-    public record DoctorDto(int Id, string Specialty, decimal ConsultationFee);
 
     public record GetDoctorsBySpecialtyQuery(string Specialty) : IRequest<Result<List<DoctorDto>>>;
 
@@ -18,8 +18,8 @@ namespace MedReserve.Application.Features.Doctors.Queries
         {
             var doctors = (await _unitOfWork.Repository<Doctor>().GetAllAsync())
                 .Where(d => d.Specialty == request.Specialty)
-                .Select(d => new DoctorDto(d.Id, d.Specialty, d.ConsultationFee))
-                .ToList();
+                .Select(d => new DoctorDto {Id = d.Id,Specialty = d.Specialty,ConsultationFee = d.ConsultationFee})
+                .ToList(); ;
 
             return Result<List<DoctorDto>>.Success(doctors);
         }

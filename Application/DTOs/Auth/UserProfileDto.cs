@@ -1,10 +1,10 @@
-﻿namespace MedReserve.Application.DTOs.Auth
+﻿namespace MedReserve.Application.DTOs.Auth;
+
+public class UserProfileDto
 {
-    public record UserProfileDto(
-        int Id,
-        string Username,
-        string Role,
-        bool IsVerified,
-        DateTime CreatedAt
-    );
+    public int Id { get; set; }
+    public string Username { get; set; } = string.Empty;
+    public string Role { get; set; } = string.Empty;
+    public bool IsVerified { get; set; }
+    public DateTime CreatedAt { get; set; }
 }

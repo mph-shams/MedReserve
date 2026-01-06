@@ -1,8 +1,7 @@
-﻿namespace MedReserve.Application.DTOs.Doctors
+﻿namespace MedReserve.Application.DTOs.Doctors;
+public class UpdateDoctorProfileRequest
 {
-    public record UpdateDoctorProfileRequest(
-        string Specialty,
-        string Bio,
-        decimal ConsultationFee
-    );
+    public string Specialty { get; set; } = string.Empty;
+    public string Bio { get; set; } = string.Empty;
+    public decimal ConsultationFee { get; set; }
 }

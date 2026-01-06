@@ -1,11 +1,11 @@
 ﻿using Application.Common.Interfaces;
 using Application.Common.Models;
 using Domain.Entities;
+using MedReserve.Application.DTOs.Appointments;
 using MediatR;
 
 namespace Application.Features.Appointments.Queries.GetPatientAppointments;
 
-public record PatientAppointmentDto(int Id, int DoctorId, DateTime Date, string Status);
 public record GetPatientAppointmentsQuery(int PatientId) : IRequest<Result<List<PatientAppointmentDto>>>;
 
 public class GetPatientAppointmentsHandler : IRequestHandler<GetPatientAppointmentsQuery, Result<List<PatientAppointmentDto>>>
@@ -17,7 +17,7 @@ public class GetPatientAppointmentsHandler : IRequestHandler<GetPatientAppointme
     {
         var appointments = (await _unitOfWork.Repository<Appointment>().GetAllAsync())
             .Where(a => a.PatientId == request.PatientId)
-            .Select(a => new PatientAppointmentDto(a.Id, a.DoctorId, a.AppointmentDate, a.Status.ToString()))
+            .Select(a => new PatientAppointmentDto{Id = a.Id,DoctorId = a.DoctorId,Date = a.AppointmentDate,Status = a.Status.ToString()})
             .ToList();
         return Result<List<PatientAppointmentDto>>.Success(appointments);
     }

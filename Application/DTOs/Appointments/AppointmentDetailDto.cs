@@ -2,13 +2,13 @@
 
 namespace MedReserve.Application.DTOs.Appointments
 {
-    public record AppointmentDetailDto(
-        int Id,
-        int DoctorId,
-        string DoctorName,
-        DateTime AppointmentDate,
-        string Status,
-        string Description,
-        List<MedicalFileDto> AttachedFiles
-    );
+    public class AppointmentDetailDto
+    {
+        public int Id { get; set; }
+        public int DoctorId { get; set; }
+        public string DoctorName { get; set; } = string.Empty;
+        public DateTime AppointmentDate { get; set; }
+        public string Status { get; set; } = string.Empty;
+        public string Description { get; set; } = string.Empty;
+    }
 }

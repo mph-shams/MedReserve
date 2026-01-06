@@ -1,6 +1,8 @@
 ﻿using Application.Features.Appointments.Commands.CancelAppointment;
+using Application.Features.Appointments.Commands.UpdateAppointmentStatus;
 using Application.Features.Appointments.Queries.GetPatientAppointments;
 using MediatR;
+using MedReserve.Application.DTOs.Appointments;
 using MedReserve.Application.Features.Appointments.Commands.CreateAppointment;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -34,7 +36,6 @@ namespace MedReserve.WebAPI.Controllers
             return result.IsSuccess ? Ok(result) : BadRequest(result);
         }
 
-
         [HttpPatch("{id}/cancel")]
         public async Task<IActionResult> Cancel(int id)
         {
@@ -43,10 +44,10 @@ namespace MedReserve.WebAPI.Controllers
         }
 
         [HttpPatch("{id}/status")]
-        public async Task<IActionResult> UpdateStatus(int id, [FromBody] int status)
+        public async Task<IActionResult> UpdateStatus(int id, [FromBody] UpdateAppointmentStatusRequest request)
         {
-            // var result = await _mediator.Send(new UpdateAppointmentStatusCommand(id, status));
-            return Ok("The appointment status has been updated !");
+            var result = await _mediator.Send(new UpdateAppointmentStatusCommand(id, request));
+            return result.IsSuccess ? Ok(result) : BadRequest(result);
         }
     }
 }

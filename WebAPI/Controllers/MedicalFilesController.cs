@@ -1,4 +1,5 @@
-﻿using Application.Features.MedicalFiles.Queries.GetMedicalFilesByAppointment;
+﻿using Application.Features.MedicalFiles.Queries.DownloadMedicalFile;
+using Application.Features.MedicalFiles.Queries.GetMedicalFilesByAppointment;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -28,7 +29,15 @@ public class MedicalFilesController : ControllerBase
     [HttpGet("download/{id}")]
     public async Task<IActionResult> Download(int id)
     {
-        return Ok("Downloading file...");
+        var result = await _mediator.Send(new DownloadFileQuery(id));
+
+        if (!result.IsSuccess)
+            return BadRequest(result);
+
+        return File(
+            result.Value.Content,
+            result.Value.ContentType,
+            result.Value.FileName);
     }
 
     [HttpDelete("{id}")]

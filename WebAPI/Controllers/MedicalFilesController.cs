@@ -1,5 +1,9 @@
-﻿using Application.Features.MedicalFiles.Queries.GetMedicalFilesByAppointment;
+﻿using Application.Features.MedicalFiles.Commands;
+using Application.Features.MedicalFiles.Commands.DeleteMedicalFile;
+using Application.Features.MedicalFiles.Queries.DownloadMedicalFile;
+using Application.Features.MedicalFiles.Queries.GetMedicalFilesByAppointment;
 using MediatR;
+using MedReserve.Application.Features.MedicalFiles.Commands.UploadMedicalFileCommand;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -22,21 +26,40 @@ public class MedicalFilesController : ControllerBase
     [HttpPost("upload")]
     public async Task<IActionResult> Upload([FromForm] int appointmentId, IFormFile file)
     {
+        if (file == null || file.Length == 0)
+            return BadRequest("No file has been selected !");
+
+        using var memoryStream = new MemoryStream();
+        await file.CopyToAsync(memoryStream);
+
+        var command = new UploadFileCommand(
+            appointmentId,
+            file.FileName,
+            memoryStream.ToArray(),
+            file.ContentType
+        );
+
+        var result = await _mediator.Send(command);
         return Ok("File uploaded successfully !");
     }
 
     [HttpGet("download/{id}")]
     public async Task<IActionResult> Download(int id)
     {
-        return Ok("Downloading file...");
+        var result = await _mediator.Send(new DownloadFileQuery(id));
+
+        if (!result.IsSuccess)
+            return BadRequest(result);
+
+        return File(result.Value.Content, result.Value.ContentType, result.Value.FileName);
     }
 
     [HttpDelete("{id}")]
     public async Task<IActionResult> Delete(int id)
     {
-        // var result = await _mediator.Send(new DeleteMedicalFileCommand(id));
+        var result = await _mediator.Send(new DeleteMedicalFileCommand(id));
         return Ok("File deleted successfully!");
     }
 
-   
+
 }

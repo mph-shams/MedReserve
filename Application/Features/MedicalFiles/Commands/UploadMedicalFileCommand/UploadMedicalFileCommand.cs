@@ -3,7 +3,7 @@ using Application.Common.Models;
 using Domain.Entities;
 using MediatR;
 
-namespace Application.Features.MedicalFiles.Commands;
+namespace MedReserve.Application.Features.MedicalFiles.Commands.UploadMedicalFileCommand;
 
 public record UploadFileCommand(int AppointmentId, string FileName, byte[] Content, string ContentType) : IRequest<Result<int>>;
 

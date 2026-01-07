@@ -58,6 +58,11 @@ public class MedicalFilesController : ControllerBase
     public async Task<IActionResult> Delete(int id)
     {
         var result = await _mediator.Send(new DeleteMedicalFileCommand(id));
+        if (!result.IsSuccess)
+        {
+            return BadRequest(result.Error);
+        }
+
         return Ok("File deleted successfully!");
     }
 

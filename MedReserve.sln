@@ -1,9 +1,19 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.14.36109.1 d17.14
+VisualStudioVersion = 17.14.36109.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MedReserve", "MedReserve.csproj", "{DA5D11EB-D4C9-4032-8F68-9ED5AD751DF3}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MedReserve.WebAPI", "MedReserve.WebAPI.csproj", "{DA5D11EB-D4C9-4032-8F68-9ED5AD751DF3}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{02EA681E-C7D8-13C7-8484-4AC65E1B71E8}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{9B9A49DC-D5B4-467E-AC4B-D4D89EEEDBF2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MedReserve.Domain", "..\MedReserve.Domain\MedReserve.Domain.csproj", "{9F617597-3177-404B-9C41-908D6F143440}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MedReserve.Application", "..\MedReserve.Application\MedReserve.Application.csproj", "{4C8A52EF-DC03-40F2-BEBB-746B87EB33C7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MedReserve.Infrastructure", "..\MedReserve.Infrastructure\MedReserve.Infrastructure.csproj", "{2B916A8E-1BF7-446D-A798-EDCA35AEA0A5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,9 +25,27 @@ Global
 		{DA5D11EB-D4C9-4032-8F68-9ED5AD751DF3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DA5D11EB-D4C9-4032-8F68-9ED5AD751DF3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DA5D11EB-D4C9-4032-8F68-9ED5AD751DF3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9F617597-3177-404B-9C41-908D6F143440}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9F617597-3177-404B-9C41-908D6F143440}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9F617597-3177-404B-9C41-908D6F143440}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9F617597-3177-404B-9C41-908D6F143440}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4C8A52EF-DC03-40F2-BEBB-746B87EB33C7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4C8A52EF-DC03-40F2-BEBB-746B87EB33C7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4C8A52EF-DC03-40F2-BEBB-746B87EB33C7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4C8A52EF-DC03-40F2-BEBB-746B87EB33C7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2B916A8E-1BF7-446D-A798-EDCA35AEA0A5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2B916A8E-1BF7-446D-A798-EDCA35AEA0A5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2B916A8E-1BF7-446D-A798-EDCA35AEA0A5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2B916A8E-1BF7-446D-A798-EDCA35AEA0A5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{DA5D11EB-D4C9-4032-8F68-9ED5AD751DF3} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+		{9F617597-3177-404B-9C41-908D6F143440} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+		{4C8A52EF-DC03-40F2-BEBB-746B87EB33C7} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+		{2B916A8E-1BF7-446D-A798-EDCA35AEA0A5} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {9CA1CBFC-E5DA-4983-BCB9-217F0C14EB9E}

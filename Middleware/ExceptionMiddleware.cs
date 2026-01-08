@@ -1,9 +1,9 @@
 ﻿using FluentValidation;
-using Application.Common.Models;
+using MedReserve.Application.Common.Models;
 using System.Net;
 using System.Text.Json;
 
-namespace WebAPI.Middleware;
+namespace MedReserve.WebAPI.Middleware;
 
 public class ExceptionMiddleware(RequestDelegate next, ILogger<ExceptionMiddleware> logger)
 {

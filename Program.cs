@@ -1,10 +1,10 @@
-using Infrastructure;
+using MedReserve.Infrastructure;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
-using Application;
+using MedReserve.Application;
 using Serilog;
-using WebAPI.Middleware;
+using MedReserve.WebAPI.Middleware;
 
 var builder = WebApplication.CreateBuilder(args);
 

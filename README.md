@@ -48,6 +48,66 @@ Run the application:
 
 dotnet run --project WebAPI
 
+**🔰Git Workflow & Collaboration**
+
+To maintain code quality and ensure a smooth development process, our team follows a structured GitHub Flow model. This ensures that the main branch always contains stable, deployable code.
+
+1. Branching Strategy
+
+We use a feature-branching strategy to isolate different tasks:
+
+main Branch: Contains the production-ready code. Direct commits to main are strictly prohibited.
+
+feature/ Branches: Used for developing new features (e.g., feature/jwt-auth, feature/telegram-integration).
+
+fix/ Branches: Used for urgent bug fixes (e.g., fix/appointment-conflict).
+
+refactor/ Branches: Used for code optimization without changing functionality.
+
+2. Development Process
+   
+Synchronize: Always start by pulling the latest changes from main:
+
+Bash
+git checkout main
+git pull origin main
+Create a Branch: Create a descriptive branch for your task:
+
+Bash
+git checkout -b feature/your-feature-name
+Commit Changes: Follow the Conventional Commits standard (see below).
+
+Push & Pull Request: Push your branch to GitHub and open a Pull Request (PR):
+
+Bash
+git push origin feature/your-feature-name
+Review: At least one other team member must review the code for logic errors and architectural consistency (Clean Architecture principles).
+
+Merge: Once approved and all tests pass, the branch is merged into main and deleted.
+
+3. Commit Message Convention
+We use clear and concise commit messages to keep the history readable:
+
+feat: A new feature (e.g., feat: add telegram notification service).
+
+fix: A bug fix (e.g., fix: resolve jwt token expiration issue).
+
+docs: Documentation changes (e.g., docs: update readme with git workflow).
+
+style: Formatting, missing semi-colons, etc. (no production code change).
+
+refactor: Refactoring production code (e.g., refactor: optimize generic repository logic).
+
+4. Database Migrations in Team
+
+When working on features that change the database schema:
+
+Create the migration in the Infrastructure project.
+
+Include the migration files in your commit.
+
+Other team members must run dotnet ef database update after pulling your changes.
+
 **🔎Contributors**
 
 Project Supervisor: Dr. Ali Rahimi Hossein Abadi 

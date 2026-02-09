@@ -147,6 +147,7 @@ Created the IdentityService interface for user identification.
 🟥Use this section to prove to your professor that you worked as a Team, not just individuals.
 
 In true Agile fashion, critical parts of the system were developed jointly. The Git logs show significant overlap in these areas:
+
 1 🔶 The Appointment Module (The Core Feature):
 
 Hossein: Created the initial structure and Controller endpoints.

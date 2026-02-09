@@ -128,8 +128,9 @@ MediatR Integration: The notification logic is embedded within the CreateAppoint
 
 Persistent Storage: User-specific Telegram identifiers are stored in the Users table, enabling persistent communication even after the application restarts.
 
-<img width="770" height="832" alt="Screenshot 2026-02-09 221918" src="https://github.com/user-attachments/assets/5d287b1e-a7c4-4ab3-ae98-19663e0bea45" />
+**➡️External Service Showcase: Telegram Bot Appointment Reservation Demo**
 
+☑️Link: https://filebin.net/l2l37ghfifa35j4u
 
 **🔎Contributors**
 

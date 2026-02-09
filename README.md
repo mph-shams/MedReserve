@@ -108,6 +108,29 @@ Include the migration files in your commit.
 
 Other team members must run dotnet ef database update after pulling your changes.
 
+
+**🌐 Automated External Service: Telegram Integration**
+MedReserve is integrated with a dedicated Telegram Bot Service, providing patients with a seamless and real-time mobile experience to track their appointments and receive instant updates.
+
+**🔹 Key Features Demonstrated**
+Real-time Notifications: As seen in the system's successful output, the bot sends an automated "🔔 New Appointment Confirmed!" alert immediately after a booking is registered in the database.
+
+On-Demand Appointment Retrieval: Users can interact with the bot using the "My Appointments" keyboard button to fetch a live list of their upcoming visits, including dates and current statuses (e.g., Pending, Confirmed).
+
+Informative Interaction: The bot includes a "Description" command that introduces the MedReserve clinic management system to new users, ensuring a user-friendly onboarding process.
+
+Secure Account Linking: The system uses a pairing mechanism (via /linkbyusername or /linkbyid) to securely associate a user's web account with their Telegram ChatId.
+
+**🔹 Technical Implementation Details**
+Background Worker: The bot operates as a BackgroundService in the Infrastructure layer, allowing it to listen for messages and process notifications without interrupting the main Web API performance.
+
+MediatR Integration: The notification logic is embedded within the CreateAppointmentHandler, triggering the Telegram API call as soon as the UnitOfWork successfully saves a new appointment.
+
+Persistent Storage: User-specific Telegram identifiers are stored in the Users table, enabling persistent communication even after the application restarts.
+
+<img width="770" height="832" alt="Screenshot 2026-02-09 221918" src="https://github.com/user-attachments/assets/5d287b1e-a7c4-4ab3-ae98-19663e0bea45" />
+
+
 **🔎Contributors**
 
 Project Supervisor: Dr. Ali Rahimi Hossein Abadi 

@@ -52,7 +52,7 @@ dotnet run --project WebAPI
 
 To maintain code quality and ensure a smooth development process, our team follows a structured GitHub Flow model. This ensures that the main branch always contains stable, deployable code.
 
-1. Branching Strategy
+⭕ 1. Branching Strategy
 
 We use a feature-branching strategy to isolate different tasks:
 
@@ -64,7 +64,7 @@ fix/ Branches: Used for urgent bug fixes (e.g., fix/appointment-conflict).
 
 refactor/ Branches: Used for code optimization without changing functionality.
 
-2. Development Process
+⭕ 2. Development Process
    
 Synchronize: Always start by pulling the latest changes from main:
 
@@ -85,7 +85,7 @@ Review: At least one other team member must review the code for logic errors and
 
 Merge: Once approved and all tests pass, the branch is merged into main and deleted.
 
-3. Commit Message Convention
+⭕ 3. Commit Message Convention
 We use clear and concise commit messages to keep the history readable:
 
 feat: A new feature (e.g., feat: add telegram notification service).
@@ -98,7 +98,7 @@ style: Formatting, missing semi-colons, etc. (no production code change).
 
 refactor: Refactoring production code (e.g., refactor: optimize generic repository logic).
 
-4. Database Migrations in Team
+⭕ 4. Database Migrations in Team
 
 When working on features that change the database schema:
 

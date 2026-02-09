@@ -70,10 +70,6 @@ Created the AuthController to handle JWT tokens.
 
 Implemented ChangePassword and UpdateProfile logic.
 
-🔸 Data Transfer Objects (DTOs):
-
-Standardized data flow by creating core DTOs: UserProfileDto, ScheduleDto, AppointmentDetailDto.
-
 🔸 Medical Files (Download Side):
 
 Implemented the logic for Downloading medical files securely (DownloadFileQuery).
@@ -83,6 +79,14 @@ Refactored and finalized the MedicalFilesController.
 🔵 2. Parsa Nasiri (Parsanb)
 
 🟥Focused on the administrative side, error handling, and making the system robust (Logging/Validation).
+
+🔸 Data Transfer Objects (DTOs):
+
+Standardized data flow by creating core DTOs: UserProfileDto, ScheduleDto, AppointmentDetailDto.
+
+🔸 CQRS Pattern:
+
+All operations are separated into Commands and Queries, managed efficiently using the MediatR library.
 
 🔸 Admin Panel & Management:
 
@@ -148,7 +152,7 @@ Created the IdentityService interface for user identification.
 
 In true Agile fashion, critical parts of the system were developed jointly. The Git logs show significant overlap in these areas:
 
-1 🔶 The Appointment Module (The Core Feature):
+1. 🔶 The Appointment Module (The Core Feature):
 
 Hossein: Created the initial structure and Controller endpoints.
 Milad: Added the complex business logic (Creating, Canceling, Status updates) inside the Handlers.

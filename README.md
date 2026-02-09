@@ -54,61 +54,61 @@ dotnet run --project WebAPI
 
 🟥Focused on the overall structure, security, and merging the team’s code.
 
-    🔸 Architecture & Solution Structure:
+🔸 Architecture & Solution Structure:
 
-    Defined the Clean Architecture layers (Domain, Application, Infrastructure, API).
+Defined the Clean Architecture layers (Domain, Application, Infrastructure, API).
 
-    Managed Merge Requests and integrated code from other branches (Merge branch, Update Solution Layers).
+Managed Merge Requests and integrated code from other branches (Merge branch, Update Solution Layers).
 
-    Implemented IUnitOfWork pattern for database transactions.
+Implemented IUnitOfWork pattern for database transactions.
 
-    🔸 Authentication & Security (Auth Module):
+🔸 Authentication & Security (Auth Module):
 
-    Developed the Login & Registration flow (LoginCommand, RegisterCommand).
+Developed the Login & Registration flow (LoginCommand, RegisterCommand).
 
-    Created the AuthController to handle JWT tokens.
+Created the AuthController to handle JWT tokens.
 
-    Implemented ChangePassword and UpdateProfile logic.
+Implemented ChangePassword and UpdateProfile logic.
 
-    🔸 Data Transfer Objects (DTOs):
+🔸 Data Transfer Objects (DTOs):
 
-    Standardized data flow by creating core DTOs: UserProfileDto, ScheduleDto, AppointmentDetailDto.
+Standardized data flow by creating core DTOs: UserProfileDto, ScheduleDto, AppointmentDetailDto.
 
-    🔸 Medical Files (Download Side):
+🔸 Medical Files (Download Side):
 
-    Implemented the logic for Downloading medical files securely (DownloadFileQuery).
+Implemented the logic for Downloading medical files securely (DownloadFileQuery).
 
-    Refactored and finalized the MedicalFilesController.
+Refactored and finalized the MedicalFilesController.
 
 🔵 2. Parsa Nasiri (Parsanb)
 
 🟥Focused on the administrative side, error handling, and making the system robust (Logging/Validation).
 
-    🔸 Admin Panel & Management:
+🔸 Admin Panel & Management:
 
-    Built the AdminController for system administrators.
+Built the AdminController for system administrators.
 
-    Implemented Doctor Verification logic (VerifyDoctorCommand).
+Implemented Doctor Verification logic (VerifyDoctorCommand).
 
-    Managed user roles and permissions (UpdateUserRoleCommand).
+Managed user roles and permissions (UpdateUserRoleCommand).
 
-    🔸 Infrastructure & Logging:
+🔸 Infrastructure & Logging:
 
-    Integrated Serilog for advanced logging (Add Serilog, Log to File).
+Integrated Serilog for advanced logging (Add Serilog, Log to File).
 
-    Created the global Exception Middleware to handle runtime errors gracefully without crashing the app.
+Created the global Exception Middleware to handle runtime errors gracefully without crashing the app.
 
-    🔸 Reporting System:
+🔸 Reporting System:
 
-    Developed system-wide reporting queries (GetSystemReportsQuery).
+Developed system-wide reporting queries (GetSystemReportsQuery).
 
-    Created DTOs for reports (SystemReportDto).
+Created DTOs for reports (SystemReportDto).
 
-    🔸 Validation (Specific Rules):
+🔸 Validation (Specific Rules):
 
-    Wrote specific validators to protect data integrity (e.g., CreateAppointmentValidator, RegisterValidator).
+Wrote specific validators to protect data integrity (e.g., CreateAppointmentValidator, RegisterValidator).
 
-    Ensured inputs are checked before reaching the database.
+Ensured inputs are checked before reaching the database.
 
 🔵 3. Milad Fazlollah Hamedani (miladdrag)
 
@@ -116,31 +116,31 @@ dotnet run --project WebAPI
 
    🔸 Domain Core & Entities:
 
-    Designed the database entities: Doctor, Appointment, MedicalFile, Schedule.
+Designed the database entities: Doctor, Appointment, MedicalFile, Schedule.
 
-    Configured Entity Framework relationships (EntityConfiguration).
+Configured Entity Framework relationships (EntityConfiguration).
 
-    🔸 Telegram Integration (External Service):
+🔸 Telegram Integration (External Service):
 
-    Built the full Telegram Bot Service (TelegramBotService).
+Built the full Telegram Bot Service (TelegramBotService).
 
-    Added TelegramChatId to the database for notifications.
+Added TelegramChatId to the database for notifications.
 
-    Handled the Telegram.Bot package integration.
+Handled the Telegram.Bot package integration.
 
-    🔸 Advanced Appointment Logic:
+🔸 Advanced Appointment Logic:
 
-    Implemented the core handler for booking (CreateAppointmentHandler).
+Implemented the core handler for booking (CreateAppointmentHandler).
 
-    Wrote logic for Canceling appointments and Updating Status (CancelAppointmentCommand).
+Wrote logic for Canceling appointments and Updating Status (CancelAppointmentCommand).
 
-    Implemented ValidationBehavior (Pipeline) to trigger validations automatically.
+Implemented ValidationBehavior (Pipeline) to trigger validations automatically.
 
-    🔸 Medical Files (Upload Side)
+🔸 Medical Files (Upload Side)
 
-    Implemented the logic for Uploading files to the server (UploadFileCommand).
+Implemented the logic for Uploading files to the server (UploadFileCommand).
 
-    Created the IdentityService interface for user identification.
+Created the IdentityService interface for user identification.
 
 🔵Collaborative Modules (Shared Work)
 
@@ -149,17 +149,25 @@ dotnet run --project WebAPI
 In true Agile fashion, critical parts of the system were developed jointly. The Git logs show significant overlap in these areas:
 1 🔶 The Appointment Module (The Core Feature):
 
-    Hossein: Created the initial structure and Controller endpoints.
-    Milad: Added the complex business logic (Creating, Canceling, Status updates) inside the Handlers.
-    Parsa: Added the Validator layer to ensure no bad data enters the system and fixed bugs in the Controller.
+Hossein: Created the initial structure and Controller endpoints.
+Milad: Added the complex business logic (Creating, Canceling, Status updates) inside the Handlers.
+Parsa: Added the Validator layer to ensure no bad data enters the system and fixed bugs in the Controller.
 
-    Result: A robust, secure, and validated booking system.
+Result: A robust, secure, and validated booking system.
 
 2. 🔶 Medical Files System:
 
     Milad: Built the Upload functionality and the storage logic.
     Hossein: Built the Download functionality and secured the Controller.
     Parsa: Reviewed and optimized the Controller code during the “Refactor” phase.
+
+   Result: Full cycle (Upload/Download) file management.
+
+3. 🔶 Authentication & User Management
+
+    Hossein: Built the Command logic (Login/Register).
+    Parsa: Added validation rules (checking password strength, email format).
+    Milad: Connected it to the IdentityService and Domain Entities.
 
 **🔰Git Workflow & Collaboration**
 

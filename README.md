@@ -48,6 +48,119 @@ Run the application:
 
 dotnet run --project WebAPI
 
+## ™️ Development Team & Task Distribution
+
+🔵 1. Hossein Hosseini (hossein2081)
+
+🟥Focused on the overall structure, security, and merging the team’s code.
+
+    🔸 Architecture & Solution Structure:
+
+    Defined the Clean Architecture layers (Domain, Application, Infrastructure, API).
+
+    Managed Merge Requests and integrated code from other branches (Merge branch, Update Solution Layers).
+
+    Implemented IUnitOfWork pattern for database transactions.
+
+    🔸 Authentication & Security (Auth Module):
+
+    Developed the Login & Registration flow (LoginCommand, RegisterCommand).
+
+    Created the AuthController to handle JWT tokens.
+
+    Implemented ChangePassword and UpdateProfile logic.
+
+    🔸 Data Transfer Objects (DTOs):
+
+    Standardized data flow by creating core DTOs: UserProfileDto, ScheduleDto, AppointmentDetailDto.
+
+    🔸 Medical Files (Download Side):
+
+    Implemented the logic for Downloading medical files securely (DownloadFileQuery).
+
+    Refactored and finalized the MedicalFilesController.
+
+🔵 2. Parsa Nasiri (Parsanb)
+
+🟥Focused on the administrative side, error handling, and making the system robust (Logging/Validation).
+
+    🔸 Admin Panel & Management:
+
+    Built the AdminController for system administrators.
+
+    Implemented Doctor Verification logic (VerifyDoctorCommand).
+
+    Managed user roles and permissions (UpdateUserRoleCommand).
+
+    🔸 Infrastructure & Logging:
+
+    Integrated Serilog for advanced logging (Add Serilog, Log to File).
+
+    Created the global Exception Middleware to handle runtime errors gracefully without crashing the app.
+
+    🔸 Reporting System:
+
+    Developed system-wide reporting queries (GetSystemReportsQuery).
+
+    Created DTOs for reports (SystemReportDto).
+
+    🔸 Validation (Specific Rules):
+
+    Wrote specific validators to protect data integrity (e.g., CreateAppointmentValidator, RegisterValidator).
+
+    Ensured inputs are checked before reaching the database.
+
+🔵 3. Milad Fazlollah Hamedani (miladdrag)
+
+🟥Focused on the “Brain” of the application, handling the complex rules and external integrations.
+
+   🔸 Domain Core & Entities:
+
+    Designed the database entities: Doctor, Appointment, MedicalFile, Schedule.
+
+    Configured Entity Framework relationships (EntityConfiguration).
+
+    🔸 Telegram Integration (External Service):
+
+    Built the full Telegram Bot Service (TelegramBotService).
+
+    Added TelegramChatId to the database for notifications.
+
+    Handled the Telegram.Bot package integration.
+
+    🔸 Advanced Appointment Logic:
+
+    Implemented the core handler for booking (CreateAppointmentHandler).
+
+    Wrote logic for Canceling appointments and Updating Status (CancelAppointmentCommand).
+
+    Implemented ValidationBehavior (Pipeline) to trigger validations automatically.
+
+    🔸 Medical Files (Upload Side)
+
+    Implemented the logic for Uploading files to the server (UploadFileCommand).
+
+    Created the IdentityService interface for user identification.
+
+🔵Collaborative Modules (Shared Work)
+
+🟥Use this section to prove to your professor that you worked as a Team, not just individuals.
+
+In true Agile fashion, critical parts of the system were developed jointly. The Git logs show significant overlap in these areas:
+1 🔶 The Appointment Module (The Core Feature):
+
+    Hossein: Created the initial structure and Controller endpoints.
+    Milad: Added the complex business logic (Creating, Canceling, Status updates) inside the Handlers.
+    Parsa: Added the Validator layer to ensure no bad data enters the system and fixed bugs in the Controller.
+
+    Result: A robust, secure, and validated booking system.
+
+2. 🔶 Medical Files System:
+
+    Milad: Built the Upload functionality and the storage logic.
+    Hossein: Built the Download functionality and secured the Controller.
+    Parsa: Reviewed and optimized the Controller code during the “Refactor” phase.
+
 **🔰Git Workflow & Collaboration**
 
 To maintain code quality and ensure a smooth development process, our team follows a structured GitHub Flow model. This ensures that the main branch always contains stable, deployable code.
